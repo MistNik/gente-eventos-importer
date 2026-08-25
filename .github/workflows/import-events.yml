@@ -1,9 +1,9 @@
 name: Importar eventos
 
 on:
+  workflow_dispatch:   # <--- ESTA LÍNEA HABILITA EL BOTÓN MANUAL
   schedule:
-    - cron: '0 9 * * *'   # todos los días a las 9:00 UTC (~6:00 AM Argentina)
-  workflow_dispatch:        # permite correrlo manualmente desde GitHub también
+    - cron: '0 3 * * *' # (Si tienes una ejecución programada)
 
 jobs:
   import:
