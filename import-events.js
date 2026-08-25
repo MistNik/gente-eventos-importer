@@ -17,6 +17,18 @@ const KNOWN_VENUES = [
     { name: 'Centro Cultural Córdoba', lat: -31.4187, lng: -64.1875 },
 ];
 
+// Misma lista de intereses que usa el onboarding (página 3)
+const ALL_INTERESTS = ['animales', 'arte', 'café', 'cocina', 'deportes', 'invierno', 'juegos de mesa', 'libros', 'museos', 'musica', 'naturaleza', 'shopping', 'teatro'];
+
+function normalize(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+function matchInterests(text) {
+    const normText = normalize(text);
+    return ALL_INTERESTS.filter(interest => normText.includes(normalize(interest)));
+}
+
 function stripHtml(html) {
     return html
         .replace(/<[^>]*>/g, ' ')
