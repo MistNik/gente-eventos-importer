@@ -101,6 +101,7 @@ async function main() {
             lat: venue ? venue.lat : null,
             lng: venue ? venue.lng : null,
             sourceUrl: ev.url,
+            interests: matchInterests(`${ev.title} ${plainText}`),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         };
 
