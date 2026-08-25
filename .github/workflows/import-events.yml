@@ -1,0 +1,22 @@
+name: Importar eventos
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # todos los días a las 9:00 UTC (~6:00 AM Argentina)
+  workflow_dispatch:        # permite correrlo manualmente desde GitHub también
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install
+
+      - run: npm run import
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
