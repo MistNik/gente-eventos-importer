@@ -5,6 +5,13 @@ on:
   schedule:
     - cron: '0 3 * * *' # (Si tienes una ejecución programada)
 
+# v2: evita que un disparo manual se pise con la corrida programada (o entre
+# sí dos disparos manuales seguidos) — cancela la corrida en curso del mismo
+# grupo antes de empezar la nueva.
+concurrency:
+  group: import-events
+  cancel-in-progress: true
+
 jobs:
   import:
     runs-on: ubuntu-latest
